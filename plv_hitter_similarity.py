@@ -106,7 +106,7 @@ season_id = f'{sim_season}_{sim_player_id}'
 player_stats, sim_stats, top_comps = generate_comp_values(season_id)
 
 def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
-    fig, axs = plt.subplots(1,2,figsize=(10,5),width_ratios=[5,1])
+    fig, axs = plt.subplots(1,2,figsize=(8,4),width_ratios=[5,1])
     
     chart_df = (
         top_comps
