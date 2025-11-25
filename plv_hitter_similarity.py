@@ -83,7 +83,7 @@ def generate_comp_values(season_id,distance_df=combined_df,season_df=sim_df,simi
 
 
 player_list = sim_df.sort_values('Process',ascending=False)['Name'].unique()
-pad1, col1, col2, col3, pad2 = st.columns(5)
+pad1, col1, col2, pad2 = st.columns([0.2,0.3,0.3,0.2)
 with col1:
     player_name = st.selectbox('Select a player',
                                player_list, 
@@ -99,8 +99,6 @@ with col2:
     sim_season = st.selectbox('Select a season',
                               sim_df.loc[sim_df['season_id'].str[-6:]==sim_player_id,'season_id'].str[:4].sort_values(ascending=False).unique(),
                               index=0)
-with col3:
-    make_chart = st.button('Generate Chart',width='stretch')
 # sim_season = int(sim_season)
 # sim_player_id = int(sim_player_id)
 season_id = f'{sim_season}_{sim_player_id}'
@@ -201,6 +199,6 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     sns.despine(left=True,bottom=True)
     st.pyplot(fig, width='content')
 pad1, col1, pad2 = st.columns([0.2,0.6,0.2])
-if make_chart:
+if st.button('Generate Chart',width='stretch'):
     with col1:
         generate_comp_card(player_stats, sim_stats, top_comps)
