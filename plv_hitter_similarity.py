@@ -100,7 +100,7 @@ with col2:
                               sim_df.loc[sim_df['season_id'].str[-6:]==sim_player_id,'season_id'].str[:4].sort_values(ascending=False).unique(),
                               index=0)
 with col3:
-    make_chart = st.button('Generate Chart')
+    make_chart = st.button('Generate Chart',width='stretch')
 # sim_season = int(sim_season)
 # sim_player_id = int(sim_player_id)
 season_id = f'{sim_season}_{sim_player_id}'
