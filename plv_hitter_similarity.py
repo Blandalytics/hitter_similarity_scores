@@ -89,7 +89,7 @@ with col1:
                                player_list, 
                                index=1)
     sim_player_id = sim_df.loc[sim_df['Name']==player_name,'season_id'].str[-6:].unique()
-    if len(mlbamid)>1:
+    if len(sim_player_id)>1:
         sim_player_id = st.selectbox('Select an MLBAMID',
                                      sim_player_id, 
                                      index=0)
