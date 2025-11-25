@@ -83,7 +83,7 @@ def generate_comp_values(season_id,distance_df=combined_df,season_df=sim_df,simi
 
 
 player_list = sim_df.sort_values('Process',ascending=False)['Name'].unique()
-pad1, col1, col2, pad2 = st.columns([0.2,0.3,0.3,0.2)
+pad1, col1, col2, pad2 = st.columns([0.2,0.3,0.3,0.2])
 with col1:
     player_name = st.selectbox('Select a player',
                                player_list, 
