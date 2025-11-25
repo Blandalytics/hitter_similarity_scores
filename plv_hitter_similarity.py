@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
-import scipy as sp
+# import scipy as sp
 import urllib
 
 from PIL import Image
