@@ -57,7 +57,7 @@ def generate_comp_values(season_id,distance_df=combined_df,season_df=sim_df,simi
     sim_player_season = f"{sim_season} {comp_df.iloc[0]['Name']}"
     
     sim_stats = pd.merge(
-        comp_df.loc[comp_df['season_id']!=id_season].head(10),
+        comp_df.loc[comp_df['season_id']!=season_id].head(10),
         similarity_stats,
         how='inner',
         on=['Season','MLBAMID']
