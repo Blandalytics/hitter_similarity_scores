@@ -36,7 +36,7 @@ sns.set_theme(
      }
     )
 st.set_page_config(page_title='Hitter Skill Similarities', page_icon='📊',layout='wide')
-st.title("Hitter Skill Similarities")
+st.markdown("<h1 style='text-align: center;'>Hitter Skill Similarities</h1>", unsafe_allow_html=True)
 
 @st.cache_data(ttl=2*3600,show_spinner=f"Loading similarity data")
 def load_data():
