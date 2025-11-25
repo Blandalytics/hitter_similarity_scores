@@ -197,5 +197,5 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     pl_ax.axis('off')
     
     sns.despine(left=True,bottom=True)
-    st.pyplot(fig)
+    st.pyplot(fig, width='content')
 generate_comp_card(player_stats, sim_stats, top_comps)
