@@ -2,9 +2,4 @@ streamlit
 matplotlib
 numpy
 pandas
-plotly
-scikit-learn==1.5.1
 seaborn
-statsmodels
-xgboost
-scipy
