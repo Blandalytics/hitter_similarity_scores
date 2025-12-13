@@ -23,7 +23,7 @@ st.image(logo, width=200)
 # Plot Style
 pl_white = '#FFFFFF'
 pl_background = '#292C42'
-pl_text = '#72a3f7'
+pl_text = '#72CBFD'
 pl_line_color = '#8D96B3'
 
 sns.set_theme(
@@ -143,7 +143,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                 x='variable',y='value',hue='label_text',palette='Set1',
                edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
-    axs[0].axhline(100,alpha=1,linestyle='--',color=pl_white,xmax=0.98)
+    axs[0].axhline(100,alpha=1,linestyle='--',color=pl_line_color,xmax=0.98)
     y_diff_max = max(abs(chart_df['value'].max()-100),abs(100-chart_df['value'].min()))+2
     axs[0].set(xlabel='',ylabel='',
           # ylim=(100-y_diff_max,100+y_diff_max)
@@ -170,8 +170,8 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                         edgecolor=pl_background)
     legend._legend_box.sep = 10
     
-    axs[1].text(0.3,0.875,'Results',ha='center',va='center',fontsize=16)
-    axs[1].text(1.1,0.875,'Top-10\nComps',ha='center',va='center',fontsize=13)
+    axs[1].text(0.3,0.875,'Results',ha='center',va='center',fontsize=16,color=pl_text)
+    axs[1].text(1.1,0.875,'Top-10\nComps',ha='center',va='center',fontsize=13,color=pl_text)
     axs[1].text(-0.05,0.775,'AVG:',ha='right',va='center')
     axs[1].text(0.3,0.775,f'{player_stats['AVG']:.3f}'.lstrip('0'),ha='center',va='center')
     axs[1].text(1.1,0.775,f'{sim_stats['AVG']:.3f}'.lstrip('0'),ha='center',va='center')
