@@ -9,6 +9,10 @@ import urllib
 
 from PIL import Image
 import os
+from pyfonts import set_default_font, load_google_font
+
+font = load_google_font("Alexandria")
+fm.fontManager.addfont(str(font.get_file()))
 
 logo_loc = 'https://github.com/Blandalytics/PLV_viz/blob/main/data/PL-text-wht.png?raw=true'
 logo = Image.open(urllib.request.urlopen(logo_loc))
@@ -17,7 +21,7 @@ st.image(logo, width=200)
 ## Set Styling
 # Plot Style
 pl_white = '#FEFEFE'
-pl_background = '#162B50'
+pl_background = '#292C42'
 pl_text = '#72a3f7'
 pl_line_color = '#293a6b'
 
@@ -33,10 +37,13 @@ sns.set_theme(
         'grid.linestyle': '-',
         'legend.facecolor':pl_background,
         'text.color': pl_white
-     }
+     },
+    font='Alexandria'
     )
 st.set_page_config(page_title='Hitter Skill Similarities', page_icon='📊',layout='wide')
-st.markdown("<h1 style='text-align: center;'>Hitter Skill Similarities</h1>", unsafe_allow_html=True)
+# st.title("NFBC Draft Data, over Time")
+new_title = '<p style="color:#72CBFD; font-weight: bold; font-size: 42px;">Hitter Skill Similarities</p>'
+st.markdown(new_title, unsafe_allow_html=True)
 
 @st.cache_data(ttl=2*3600,show_spinner=f"Loading similarity data")
 def load_data():
@@ -130,8 +137,9 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
               value_vars=['Aggression','zDV','oDV','Contact','Power'])
     )
     
+    bar_hues = ['#F1C647','#4BBFDF','#D96060','#44931B','#D58EC3','#8F99DF']
     sns.barplot(chart_df,
-                x='variable',y='value',hue='label_text',palette='Set1',
+                x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
                edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
     axs[0].axhline(100,alpha=1,linestyle='--',color=pl_white,xmax=0.98)
