@@ -140,7 +140,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     bar_hues = ['#F1C647','#D96060','#4BBFDF','#44931B','#8F99DF','#E89621']
     sns.barplot(chart_df,
-                x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
+                x='variable',y='value',hue='label_text',palette='Set1',
                edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
     axs[0].axhline(100,alpha=1,linestyle='--',color=pl_white,xmax=0.98)
