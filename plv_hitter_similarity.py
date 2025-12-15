@@ -157,6 +157,15 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                 x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
                saturation=1,edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
+    
+    def gradient_bar(ax, x, y, width=0.5, bottom=0):
+        for left, top in zip(x, y):
+            right = left + width
+            gradient_image(ax, extent=(left, right, bottom, top),
+                           cmap=pl_highlight_cmap, cmap_range=(0, 1))
+
+    gradient_image(axs[0], chart_df['label_text'], np.where(chart_df['label_text']==f'{player_name} {sim_season}',chart_df['value'],0))
+    
     axs[0].axhline(100,alpha=0.75,linewidth=0.99,linestyle='--',color=pl_white,xmin=0.005,xmax=0.98)
     y_diff_max = max(abs(chart_df['value'].max()-100),abs(100-chart_df['value'].min()))+2
     axs[0].set(xlabel='',ylabel='',
