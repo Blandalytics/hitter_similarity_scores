@@ -249,7 +249,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
         a, b = cmap_range
         X = a + (b - a) / X.max() * X
         # added origin = lower, elsewise text is flipped upside down
-        im = ax.imshow(X, #extent=extent, 
+        im = ax.imshow(X, extent=extent, 
                        interpolation='bicubic',
                        vmin=0, vmax=1, origin='lower', **kwargs)
         return im
@@ -259,7 +259,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                                         size=1, prop=fp)
     # use text to define imshow extent
     extent = text.get_extents().extents[[0, 2, 1, 3]]
-    im = gradient_image(name_ax, direction=1, #extent=extent,
+    im = gradient_image(name_ax, direction=1, extent=extent,
                         cmap=pl_highlight_cmap, cmap_range=(0, 1), alpha=1)
     
     # use transData instead of transAxes
