@@ -219,7 +219,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     # Add Separator
     line_ax = fig.add_axes([0.3,0.97,0.15,0.12], anchor='SW', zorder=1)
-    line_ax.plot([0.5,0.5,1],[0,1],color=pl_text)
+    line_ax.plot([0.5,0.5],[0,1],color=pl_text)
     line_ax.axis('off')
     
     sns.despine(left=True,bottom=True)
