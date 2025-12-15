@@ -19,7 +19,7 @@ logo_loc = 'https://github.com/Blandalytics/PLV_viz/blob/main/data/PL-text-wht.p
 logo = Image.open(urllib.request.urlopen(logo_loc))
 st.image(logo, width=200)
 
-@st.cache_data(ttl=2*3600)
+# @st.cache_data(ttl=2*3600)
 def letter_logo():
     logo_loc = 'https://github.com/Blandalytics/baseball_snippets/blob/main/teal_letter_logo.png?raw=true'
     logo = Image.open(urllib.request.urlopen(logo_loc))
@@ -209,7 +209,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
     # Add PL logo
-    pl_ax = fig.add_axes([0.075,0.95,0.127,0.15], anchor='SW', zorder=1)
+    pl_ax = fig.add_axes([0.075,0.975,0.2,0.15], anchor='SW', zorder=1)
     pl_ax.imshow(letter_logo)
     pl_ax.axis('off')
     
