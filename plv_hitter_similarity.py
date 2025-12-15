@@ -253,7 +253,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                        vmin=0, vmax=1, origin='lower', **kwargs)
         return im
     # define text before gradient to get extent
-    fp = FontProperties(family='Alexandria')
+    fp = fm.FontProperties(family='Alexandria')
     text = matplotlib.textpath.TextPath((0.0, 0.0), f"{top_comps.iloc[0]['Name']} ({sim_season})",
                                         size=1, prop=fp)
     # use text to define imshow extent
