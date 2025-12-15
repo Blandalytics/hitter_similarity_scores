@@ -219,7 +219,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     axs[1].axis('off')
 
     # Add Name w Gradient
-    name_ax = fig.add_axes([0.3,0.98,0.6,0.12], anchor='SW', zorder=1)
+    name_ax = fig.add_axes([0.3,0.98,0.6,0.06], anchor='SW', zorder=1)
     def gradient_image(ax, extent, direction=0.3, cmap_range=(0, 1), **kwargs):
         """
         Draw a gradient image based on a colormap.
@@ -264,7 +264,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     # use transData instead of transAxes
     im.set_clip_path(text, transform=name_ax.transData)
-    name_ax.set(ylim=(-0.5,1.5))
+    # name_ax.set(ylim=(-0.5,1.5))
     # name_ax.axis('off')
 
     fig.text(0.1625,1.02,f"Hitter Skill\nSimilarities{least_text}",va='center',ha='left',color=pl_text,fontsize=16)
