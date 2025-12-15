@@ -148,7 +148,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     )
     
     # bar_hues = [pl_highlight] + list(sns.color_palette('Set1',n_colors=5))
-    bar_hues = [pl_highlight,'#aa2312','#4d7ca3','#5d9e5b','#8e5c95','#d47f2b']
+    bar_hues = [pl_highlight,'#c23c3d','#4d7ca3','#5d9e5b','#8e5c95','#d47f2b']
     sns.barplot(chart_df,
                 x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
                saturation=1,edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
