@@ -33,6 +33,7 @@ pl_white = '#FFFFFF'
 pl_background = '#292C42'
 pl_text = '#72CBFD'
 pl_line_color = '#8D96B3'
+pl_highglight = '#F1C647'
 
 sns.set_theme(
     style={
@@ -206,9 +207,10 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     axs[1].text(1.1,0.075,f'{sim_stats['wRC+']:.0f}',ha='center',va='center')
     
     axs[1].axis('off')
-    
-    fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
-    fig.text(0.17,1.025,f"{sim_season} Skill\nSimilarity Scores{least_text}",va='center',ha='left',color=pl_text,fontsize=20)
+
+    # fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
+    fig.text(0.17,1.025,f"Skill Similarity\nScores{least_text}",va='center',ha='left',color=pl_text,fontsize=20)
+    fig.text(0.25,1.025,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highglight,fontsize=30)
     # Add PL logo
     pl_ax = fig.add_axes([0.08,0.97,0.15,0.12], anchor='SW', zorder=1)
     pl_ax.imshow(letter_logo)
