@@ -219,7 +219,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     axs[1].axis('off')
 
     # Add Name w Gradient
-    name_ax = fig.add_axes([0.3,0.965,0.7,0.12], anchor='SW', zorder=1)
+    name_ax = fig.add_axes([0.3,0.965,0.5,0.12], anchor='SW', zorder=1)
     def gradient_image(ax, extent, direction=0.3, cmap_range=(0, 1), **kwargs):
         """
         Draw a gradient image based on a colormap.
