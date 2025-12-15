@@ -152,7 +152,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                 x='variable',y='value',hue='label_text',palette='Set1',
                edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
-    axs[0].axhline(100,alpha=1,linewidth=0.99,linestyle='--',color=pl_line_color,xmin=0.005,xmax=0.98)
+    axs[0].axhline(100,alpha=0.75,linewidth=0.99,linestyle='--',color=pl_white,xmin=0.005,xmax=0.98)
     y_diff_max = max(abs(chart_df['value'].max()-100),abs(100-chart_df['value'].min()))+2
     axs[0].set(xlabel='',ylabel='',
           # ylim=(100-y_diff_max,100+y_diff_max)
