@@ -219,7 +219,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     axs[1].axis('off')
 
     # Add Name w Gradient
-    name_ax = fig.add_axes([0.3,0.965,0.5,0.12], anchor='SW', zorder=1)
+    name_ax = fig.add_axes([0.3,0.965,0.6,0.12], anchor='SW', zorder=1)
     def gradient_image(ax, extent, direction=0.3, cmap_range=(0, 1), **kwargs):
         """
         Draw a gradient image based on a colormap.
@@ -259,7 +259,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     # use text to define imshow extent
     extent = text.get_extents().extents[[0, 2, 1, 3]]
     im = gradient_image(name_ax, direction=1, extent=extent,
-                        cmap=pl_highlight_cmap, cmap_range=(0.2, 0.8), alpha=0.5)
+                        cmap=pl_highlight_cmap, cmap_range=(0, 1), alpha=1)
     
     # use transData instead of transAxes
     im.set_clip_path(text, transform=name_ax.transData)
