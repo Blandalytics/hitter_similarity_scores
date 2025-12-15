@@ -209,7 +209,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
     # Add PL logo
-    pl_ax = fig.add_axes([0.05,1,0.127,0.15], anchor='SW', zorder=1)
+    pl_ax = fig.add_axes([0.075,0.95,0.127,0.15], anchor='SW', zorder=1)
     pl_ax.imshow(letter_logo)
     pl_ax.axis('off')
     
