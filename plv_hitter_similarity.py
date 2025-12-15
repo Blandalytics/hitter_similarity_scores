@@ -148,7 +148,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     )
     
     # bar_hues = [pl_highlight] + list(sns.color_palette('Set1',n_colors=5))
-    bar_hues = [pl_highlight,'#D96060','#8F99DF','#44931B','#D58EC3','#E89621']
+    bar_hues = [pl_highlight,'#872B2C','#2674C5','#286F04','#57219B','#B1550D']
     sns.barplot(chart_df,
                 x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
                saturation=1,edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
@@ -173,7 +173,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     legend = axs[0].legend([handles[i] for i in order], [labels[i] for i in order],
                         ncol=3,
                         loc='upper center',
-                        bbox_to_anchor=(0.1,0.925,1.125,0.2),
+                        bbox_to_anchor=(0.1,0.915,1.125,0.2),
                         title='',
                         fontsize=11,
                         framealpha=1,
