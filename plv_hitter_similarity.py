@@ -157,7 +157,39 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
                 x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
                saturation=1,edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
+    def gradient_image(ax, extent, direction=0.3, cmap_range=(0, 1), **kwargs):
+        """
+        Draw a gradient image based on a colormap.
     
+        Parameters
+        ----------
+        ax : Axes
+            The axes to draw on.
+        extent
+            The extent of the image as (xmin, xmax, ymin, ymax).
+            By default, this is in Axes coordinates but may be
+            changed using the *transform* keyword argument.
+        direction : float
+            The direction of the gradient. This is a number in
+            range 0 (=vertical) to 1 (=horizontal).
+        cmap_range : float, float
+            The fraction (cmin, cmax) of the colormap that should be
+            used for the gradient, where the complete colormap is (0, 1).
+        **kwargs
+            Other parameters are passed on to `.Axes.imshow()`.
+            In particular useful is *cmap*.
+        """
+        phi = direction * np.pi / 2
+        v = np.array([np.cos(phi), np.sin(phi)])
+        X = np.array([[v @ [1, 0], v @ [1, 1]],
+                      [v @ [0, 0], v @ [0, 1]]])
+        a, b = cmap_range
+        X = a + (b - a) / X.max() * X
+        # added origin = lower, elsewise text is flipped upside down
+        im = ax.imshow(X, extent=extent, 
+                       interpolation='bicubic',
+                       vmin=0, vmax=1, origin='lower', **kwargs)
+        return im
     def gradient_bar(ax, x, y, width=0.5, bottom=0):
         for left, top in zip(x, y):
             right = left + width
@@ -229,39 +261,6 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
 
     # Add Name w Gradient
     name_ax = fig.add_axes([0.3,0.985,0.625,0.07], anchor='SW', zorder=1)
-    def gradient_image(ax, extent, direction=0.3, cmap_range=(0, 1), **kwargs):
-        """
-        Draw a gradient image based on a colormap.
-    
-        Parameters
-        ----------
-        ax : Axes
-            The axes to draw on.
-        extent
-            The extent of the image as (xmin, xmax, ymin, ymax).
-            By default, this is in Axes coordinates but may be
-            changed using the *transform* keyword argument.
-        direction : float
-            The direction of the gradient. This is a number in
-            range 0 (=vertical) to 1 (=horizontal).
-        cmap_range : float, float
-            The fraction (cmin, cmax) of the colormap that should be
-            used for the gradient, where the complete colormap is (0, 1).
-        **kwargs
-            Other parameters are passed on to `.Axes.imshow()`.
-            In particular useful is *cmap*.
-        """
-        phi = direction * np.pi / 2
-        v = np.array([np.cos(phi), np.sin(phi)])
-        X = np.array([[v @ [1, 0], v @ [1, 1]],
-                      [v @ [0, 0], v @ [0, 1]]])
-        a, b = cmap_range
-        X = a + (b - a) / X.max() * X
-        # added origin = lower, elsewise text is flipped upside down
-        im = ax.imshow(X, extent=extent, 
-                       interpolation='bicubic',
-                       vmin=0, vmax=1, origin='lower', **kwargs)
-        return im
     # define text before gradient to get extent
     fp = fm.FontProperties(family='Alexandria')
     text = matplotlib.textpath.TextPath((0.0, 0.0), f"{top_comps.iloc[0]['Name']} ({sim_season})",
