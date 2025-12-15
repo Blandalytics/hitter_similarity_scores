@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
+import matplotlib.textpath
+import matplotlib.patches
 import seaborn as sns
 # import scipy as sp
 import urllib
@@ -34,6 +36,8 @@ pl_background = '#292C42'
 pl_text = '#72CBFD'
 pl_line_color = '#8D96B3'
 pl_highlight = '#F1C647'
+pl_highlight_gradient = ['#F1C647','#F5A05E']
+pl_highlight_cmap = sns.color_palette(f'blend:{pl_highlight_gradient[0]},{pl_highlight_gradient[1]}', as_cmap=True)
 
 sns.set_theme(
     style={
@@ -214,9 +218,56 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     axs[1].axis('off')
 
-    # fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
+    # Add Name w Gradient
+    name_ax = fig.add_axes([0.3,0.965,1,0.2], anchor='SW', zorder=1)
+    def gradient_image(ax, extent, direction=0.3, cmap_range=(0, 1), **kwargs):
+        """
+        Draw a gradient image based on a colormap.
+    
+        Parameters
+        ----------
+        ax : Axes
+            The axes to draw on.
+        extent
+            The extent of the image as (xmin, xmax, ymin, ymax).
+            By default, this is in Axes coordinates but may be
+            changed using the *transform* keyword argument.
+        direction : float
+            The direction of the gradient. This is a number in
+            range 0 (=vertical) to 1 (=horizontal).
+        cmap_range : float, float
+            The fraction (cmin, cmax) of the colormap that should be
+            used for the gradient, where the complete colormap is (0, 1).
+        **kwargs
+            Other parameters are passed on to `.Axes.imshow()`.
+            In particular useful is *cmap*.
+        """
+        phi = direction * np.pi / 2
+        v = np.array([np.cos(phi), np.sin(phi)])
+        X = np.array([[v @ [1, 0], v @ [1, 1]],
+                      [v @ [0, 0], v @ [0, 1]]])
+        a, b = cmap_range
+        X = a + (b - a) / X.max() * X
+        # added origin = lower, elsewise text is flipped upside down
+        im = ax.imshow(X, extent=extent, interpolation='bicubic',
+                       vmin=0, vmax=1, origin='lower', **kwargs)
+        return im
+    # define text before gradient to get extent
+    fp = FontProperties(family='Alexandria')
+    text = matplotlib.textpath.TextPath((0.0, 0.0), f"{top_comps.iloc[0]['Name']} ({sim_season})",
+                                        size=1, prop=fp)
+    # use text to define imshow extent
+    extent = text.get_extents().extents[[0, 2, 1, 3]]
+    im = gradient_image(name_ax, direction=1, extent=extent,
+                        cmap=pl_highlight_cmap, cmap_range=(0.2, 0.8), alpha=0.5)
+    
+    # use transData instead of transAxes
+    im.set_clip_path(text, transform=name_ax.transData)
+    # © trenton
+    name_ax.axis('off')
+
     fig.text(0.1625,1.02,f"Hitter Skill\nSimilarities{least_text}",va='center',ha='left',color=pl_text,fontsize=16)
-    fig.text(0.31,1.02,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highlight,fontsize=24)
+    # fig.text(0.31,1.02,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highlight,fontsize=24)
     
     # Add PL logo
     pl_ax = fig.add_axes([0.08,0.965,0.15,0.12], anchor='SW', zorder=1)
