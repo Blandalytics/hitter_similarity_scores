@@ -210,7 +210,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
 
     # fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
     fig.text(0.1625,1.025,f"Hitter Skill\nSimilarities{least_text}",va='center',ha='left',color=pl_text,fontsize=16)
-    fig.text(0.325,1.025,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highglight,fontsize=24)
+    fig.text(0.3,1.025,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highglight,fontsize=24)
     axs[0].plot([1,1],[175,200],color=pl_text)
     # Add PL logo
     pl_ax = fig.add_axes([0.08,0.97,0.15,0.12], anchor='SW', zorder=1)
@@ -218,10 +218,10 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     pl_ax.axis('off')
     
     # Add Separator
-    line_ax = fig.add_axes([0.23,0.97,0.15,0.12], anchor='SW', zorder=1)
-    line_ax.plot([0.5,0.5],[0.2,0.8],color=pl_text,linewidth=2,alpha=0.75)
-    line_ax.set(ylim=(0,1))
-    line_ax.axis('off')
+    # line_ax = fig.add_axes([0.23,0.97,0.15,0.12], anchor='SW', zorder=1)
+    # line_ax.plot([0.5,0.5],[0.2,0.8],color=pl_text,linewidth=2,alpha=0.75)
+    # line_ax.set(ylim=(0,1))
+    # line_ax.axis('off')
     
     sns.despine(left=True,bottom=True)
     st.pyplot(fig, width='content')
