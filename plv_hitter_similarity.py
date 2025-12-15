@@ -161,6 +161,11 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
           )
     axs[0].set_xticks(range(5))
     axs[0].set_xticklabels(['Aggression+','In-Zone\nDecision Value+','Out-of-Zone\nDecision Value+','Contact+','Power+'],fontsize=9,color=pl_white)
+    axs[0].tick_params(
+        axis='x', # applies to both x and y axes
+        which='both', # applies to both major and minor ticks
+        length=0     # sets the length of the tick line to zero, effectively hiding it
+    )
     axs[0].set_yticks([50,75,100,125,150])
     handles, labels = axs[0].get_legend_handles_labels() 
       
