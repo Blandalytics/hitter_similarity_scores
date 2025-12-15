@@ -264,7 +264,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     # use transData instead of transAxes
     im.set_clip_path(text, transform=name_ax.transData)
-    # name_ax.set(ylim=(0,1))
+    name_ax.set(ylim=(-0.5,1))
     # name_ax.axis('off')
 
     fig.text(0.1625,1.02,f"Hitter Skill\nSimilarities{least_text}",va='center',ha='left',color=pl_text,fontsize=16)
