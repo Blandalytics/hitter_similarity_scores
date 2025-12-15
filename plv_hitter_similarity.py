@@ -33,7 +33,7 @@ pl_white = '#FFFFFF'
 pl_background = '#292C42'
 pl_text = '#72CBFD'
 pl_line_color = '#8D96B3'
-pl_highglight = '#F1C647'
+pl_highlight = '#F1C647'
 
 sns.set_theme(
     style={
@@ -147,9 +147,9 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
               value_vars=['Aggression','zDV','oDV','Contact','Power'])
     )
     
-    bar_hues = ['#872B2C','#0C3E9B','#286F04','#57219B','#B1550D','#794C30']
+    bar_hues = [pl_highlight] + list(sns.color_palette('Set1',n_colors=5))
     sns.barplot(chart_df,
-                x='variable',y='value',hue='label_text',palette='Set1',
+                x='variable',y='value',hue='label_text',palette=bar_hues,#'Set1',
                edgecolor=pl_background,linewidth=1, alpha=1,ax=axs[0]
                )
     axs[0].axhline(100,alpha=0.75,linewidth=0.99,linestyle='--',color=pl_white,xmin=0.005,xmax=0.98)
@@ -210,7 +210,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
 
     # fig.suptitle(f"{top_comps.iloc[0]['Name']}'s {sim_season} Skill Similarity Scores{least_text}",y=1.05,color=pl_text,fontsize=20)
     fig.text(0.1625,1.025,f"Hitter Skill\nSimilarities{least_text}",va='center',ha='left',color=pl_text,fontsize=16)
-    fig.text(0.31,1.025,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highglight,fontsize=24)
+    fig.text(0.31,1.025,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highlight,fontsize=24)
     axs[0].plot([1,1],[175,200],color=pl_text)
     # Add PL logo
     pl_ax = fig.add_axes([0.08,0.97,0.15,0.12], anchor='SW', zorder=1)
