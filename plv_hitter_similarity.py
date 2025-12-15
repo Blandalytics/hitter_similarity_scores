@@ -279,5 +279,5 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     st.pyplot(fig, width='content')
 pad1, col1, pad2 = st.columns([0.2,0.6,0.2])
 with col1:
-    # if st.button('Generate Chart',width='stretch'):
-    generate_comp_card(player_stats, sim_stats, top_comps)
+    if st.button('Generate Chart',width='stretch'):
+        generate_comp_card(player_stats, sim_stats, top_comps)
