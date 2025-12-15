@@ -218,7 +218,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     pl_ax.axis('off')
     
     # Add Separator
-    line_ax = fig.add_axes([0.225,0.97,0.15,0.12], anchor='SW', zorder=1)
+    line_ax = fig.add_axes([0.23,0.97,0.15,0.12], anchor='SW', zorder=1,alpha=0.75)
     line_ax.plot([0.5,0.5],[0,1],color=pl_text,linewidth=2)
     line_ax.axis('off')
     
