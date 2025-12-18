@@ -259,24 +259,24 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
     
     axs[1].axis('off')
 
-    # Add Name w Gradient
-    name_ax = fig.add_axes([0.3,0.985,0.625,0.07], anchor='SW', zorder=1)
-    # define text before gradient to get extent
-    fp = fm.FontProperties(family='Alexandria')
-    text = matplotlib.textpath.TextPath((0.0, 0.0), f"{top_comps.iloc[0]['Name']} ({sim_season})",
-                                        size=1, prop=fp)
-    # use text to define imshow extent
-    extent = text.get_extents().extents[[0, 2, 1, 3]]
-    im = gradient_image(name_ax, direction=1, extent=extent,
-                        cmap=pl_highlight_cmap, cmap_range=(0, 1), alpha=1)
+    # # Add Name w Gradient
+    # name_ax = fig.add_axes([0.3,0.985,0.625,0.07], anchor='SW', zorder=1)
+    # # define text before gradient to get extent
+    # fp = fm.FontProperties(family='Alexandria')
+    # text = matplotlib.textpath.TextPath((0.0, 0.0), f"{top_comps.iloc[0]['Name']} ({sim_season})",
+    #                                     size=1, prop=fp)
+    # # use text to define imshow extent
+    # extent = text.get_extents().extents[[0, 2, 1, 3]]
+    # im = gradient_image(name_ax, direction=1, extent=extent,
+    #                     cmap=pl_highlight_cmap, cmap_range=(0, 1), alpha=1)
     
-    # use transData instead of transAxes
-    im.set_clip_path(text, transform=name_ax.transData)
-    # name_ax.set(ylim=(-0.5,1.5))
-    name_ax.axis('off')
+    # # use transData instead of transAxes
+    # im.set_clip_path(text, transform=name_ax.transData)
+    # # name_ax.set(ylim=(-0.5,1.5))
+    # name_ax.axis('off')
 
     fig.text(0.1625,1.02,f"Hitter Skill\nSimilarities{least_text}",va='center',ha='left',color=pl_text,fontsize=16)
-    # fig.text(0.31,1.02,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highlight,fontsize=24)
+    fig.text(0.31,1.02,f"{top_comps.iloc[0]['Name']} ({sim_season})",va='center',ha='left',color=pl_highlight,fontsize=24)
     
     # Add PL logo
     pl_ax = fig.add_axes([0.08,0.965,0.15,0.12], anchor='SW', zorder=1)
