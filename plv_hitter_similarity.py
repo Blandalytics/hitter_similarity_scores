@@ -147,7 +147,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
         .sort_values('Sim Score',ascending=False)
         .round(1)
         .reset_index()
-        .melt(id_vars=['label_text'],
+        .melt(id_vars=['player_season'],
               value_vars=['Aggression','zDV','oDV','Contact','Power'])
     )
     
