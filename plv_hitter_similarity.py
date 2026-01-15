@@ -72,7 +72,7 @@ def generate_comp_values(season_id,distance_df=combined_df,season_df=sim_df,simi
     top_comps = distance_df.loc[season_id].astype('float').fillna(100).sort_values(ascending=False)
     comp_players = []
     for player in list(top_comps.index):
-        comp_players += [season_df.loc[season_df['season_id']==player,['Name','player_season','season_id','Pitches','usage_vsR','process_vsR','process_vsL','Aggression','zDV','oDV','Contact','Power']]]
+        comp_players += [season_df.loc[season_df['season_id']==player,['Name','player_season','season_id','Pitches','usage_vsR','process_vsR','process_vsL','Aggression','zDV','oDV','Contact','Gap Power','HR Power']]]
     comp_df = pd.merge(pd.concat(comp_players),top_comps,how='inner',left_on='season_id',right_index=True).rename(columns={season_id:'Sim Score'})
     comp_df[['Season','MLBAMID']] = comp_df['season_id'].str.split('_', n=1, expand=True).astype('int')
     sim_player_season = f"{sim_season} {comp_df.iloc[0]['Name']}"
@@ -133,14 +133,15 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
         top_comps
         [[
             'Name','player_season','Sim Score',
-            'Aggression','zDV','oDV','Contact','Power']]
+            'Aggression','zDV','oDV','Contact','Gap Power','HR Power']]
         .round(0)
         .astype({
             'Aggression':'int',
             'zDV':'int',
             'oDV':'int',
             'Contact':'int',
-            'Power':'int',
+            'Gap Power':'int',
+            'HR Power':'int',
             'Sim Score':'int'
         })
         .assign(label_text = lambda x: x['player_season'].astype('str')+': '+x['Sim Score'].astype('str'))
@@ -148,7 +149,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
         .round(1)
         .reset_index()
         .melt(id_vars=['player_season'],
-              value_vars=['Aggression','zDV','oDV','Contact','Power'])
+              value_vars=['Aggression','zDV','oDV','Contact','Gap Power','HR Power'])
     )
     
     # bar_hues = [pl_highlight] + list(sns.color_palette('Set1',n_colors=5))
@@ -205,7 +206,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
           ylim=(25,175)
           )
     axs[0].set_xticks(range(5))
-    axs[0].set_xticklabels(['Aggression+','In-Zone\nDecision Value+','Out-of-Zone\nDecision Value+','Contact+','Power+'],fontsize=9,color=pl_white)
+    axs[0].set_xticklabels(['Aggression+','In-Zone\nDecision Value+','Out-of-Zone\nDecision Value+','Contact+','Gap Power+','HR Power+'],fontsize=9,color=pl_white)
     axs[0].tick_params(
         axis='x', # applies to both x and y axes
         which='both', # applies to both major and minor ticks
