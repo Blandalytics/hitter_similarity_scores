@@ -205,7 +205,7 @@ def generate_comp_card(player_stats, sim_stats, top_comps,top=True):
           # ylim=(100-y_diff_max,100+y_diff_max)
           ylim=(25,175)
           )
-    axs[0].set_xticks(range(5))
+    axs[0].set_xticks(range(6))
     axs[0].set_xticklabels(['Aggression+','In-Zone\nDecision Value+','Out-of-Zone\nDecision Value+','Contact+','Gap Power+','HR Power+'],fontsize=9,color=pl_white)
     axs[0].tick_params(
         axis='x', # applies to both x and y axes
